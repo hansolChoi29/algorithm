@@ -7,10 +7,12 @@ public class Main {
 
         int N = sc.nextInt();
 
-        System.out.println(
-            N % 2 == 0 ? 2 
-            : N % 3 == 0 ? 3 
-            : 5
-        );
+        int count = 0;
+
+        for (int i = 1; i <= N; i++) {
+            count += (i % 2 == 0 || i % 3 == 0 || i % 5 == 0) ? 0 : 1;
+        }
+
+        System.out.println(count);
     }
 }
