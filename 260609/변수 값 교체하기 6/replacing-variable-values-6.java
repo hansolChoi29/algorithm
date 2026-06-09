@@ -1,0 +1,13 @@
+public class Main {
+    public static void main(String[] args) {
+        // Please write your code here.
+        int a = 2;
+        int b = 5;
+        if(a < b){
+            int temp = b;
+            b = a;
+            a = temp;
+            System.out.printf("%d\n%d", a, b);
+        }
+    }
+}
