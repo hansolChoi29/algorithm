@@ -1,9 +1,9 @@
 name: Organize Codetree folders
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -13,13 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Stop if commit is from GitHub Actions bot
-        run: |
-          if [ "${{ github.actor }}" = "github-actions[bot]" ]; then
-            echo "Skip bot commit."
-            exit 0
-          fi
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -31,7 +24,10 @@ jobs:
 
           for dir in [0-9][0-9][0-9][0-9][0-9][0-9]; do
             if [ -d "$dir" ]; then
-              git mv "$dir" "codetree/$dir"
+              mkdir -p "codetree/$dir"
+              rsync -a "$dir"/ "codetree/$dir"/
+              git rm -r "$dir"
+              git add "codetree/$dir"
               moved=true
             fi
           done
@@ -39,7 +35,7 @@ jobs:
           if [ "$moved" = true ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git commit -m "chore: move codetree folders"
+            git commit -m "chore: move codetree folders [skip ci]"
             git push
           else
             echo "No date folders to move."
