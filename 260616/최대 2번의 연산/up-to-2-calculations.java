@@ -7,12 +7,9 @@ public class Main {
 
         int a = sc.nextInt();
     
-        if(a % 2 == 0){
-            a/=2;
-        }
-        if(a % 2 != 0){
-            a = (a + 1)/2;
-        }
+        if(a % 2 == 0) a/=2;
+        if(a % 2 != 0) a = (a + 1)/2;
+
         System.out.println(a);
     }
 }
