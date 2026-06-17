@@ -10,18 +10,11 @@ public class Main {
         // 400으로 나누어 떨어지지 않는 해는 평년으로 합니다. 근데 이거 지금 필요없음
         if(n == 2){
             System.out.println(28);
-        }else if(
-            n == 1 || 
-            n == 3 || 
-            n == 5 || 
-            n == 7 || 
-            n == 8 || 
-            n == 10 ||
-             n == 12
-        ){
-            System.out.println(31);
+            // 근데 7월 기준으로 홀짝이 바뀐다는 규칙을 반영하면?
+        }else if(n <= 7){
+            System.out.println(n % 2 == 1 ? 31 : 30);
         }else{
-            System.out.println(30);
+            System.out.println(n % 2 == 0 ? 31 : 30);
         }
     }
 }
