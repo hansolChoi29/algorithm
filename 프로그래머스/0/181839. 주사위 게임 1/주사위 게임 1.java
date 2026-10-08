@@ -1,17 +1,18 @@
 class Solution {
     public int solution(int a, int b) {
-        int answer = 0;
+        boolean isAOdd = a % 2 != 0;
+        boolean isBOdd = b % 2 != 0;
         
-        if(a % 2 != 0 && b % 2 != 0){
-            answer = a * a + b * b;
+        if(isAOdd && isBOdd){
+            return a * a + b * b;
             
-        }else if(a % 2 != 0 || b % 2 != 0){
-            answer = 2 * (a + b);
-            
-        }else{
-            answer = Math.abs(a - b);
         }
         
-        return answer;
+        if(isAOdd || isBOdd){
+            return 2 * (a + b);
+            
+        }
+        
+        return Math.abs(a - b);
     }
 }
